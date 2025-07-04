@@ -82,13 +82,24 @@ const BuildPage = () => {
         </div>
         {/* Right: Huge GIF */}
         <div className="flex-shrink-0 ml-2 sm:ml-8 flex items-center justify-center h-full">
+          {/* Light mode GIF */}
           <img
             src="https://i.postimg.cc/k4MzD8PC/blue-cup-unscreen.gif"
             alt="Blue Cup"
-            className="w-32 h-32 xs:w-48 xs:h-48 sm:w-64 sm:h-64 md:w-[350px] md:h-[350px] lg:w-[420px] lg:h-[420px] object-contain rounded-2xl"
+            className="w-32 h-32 xs:w-48 xs:h-48 sm:w-64 sm:h-64 md:w-[350px] md:h-[350px] lg:w-[420px] lg:h-[420px] object-contain rounded-2xl block dark:hidden"
             style={{
               background: "transparent",
-            }} />
+            }}
+          />
+          {/* Dark mode GIF */}
+          <img
+            src="/assets/blue_cup_light.gif"
+            alt="Blue Cup Light"
+            className="w-32 h-32 xs:w-48 xs:h-48 sm:w-64 sm:h-64 md:w-[350px] md:h-[350px] lg:w-[420px] lg:h-[420px] object-contain rounded-2xl hidden dark:block"
+            style={{
+              background: "transparent",
+            }}
+          />
         </div>
       </div>
 
@@ -113,7 +124,13 @@ const BuildPage = () => {
         </div>
 
         {loading ? (
-          <p style={{ color: "#059669" }}>Loading mini projects...</p>
+          <LoadingScreen 
+    message="Loading mini projects..." 
+    showMessage={true}
+    fullScreen={true}
+    size={40}
+    duration={800}
+  />
         ) : error ? (
           <p style={{ color: "#dc2626" }}>Error: {error}</p>
         ) : (
@@ -242,8 +259,7 @@ const BuildPage = () => {
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 minWidth: "120px",
-              }}
-            >
+              }}>
               {label}
             </div>
           ))}
